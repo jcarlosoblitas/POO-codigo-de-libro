@@ -1,0 +1,382 @@
+//pagina 29
+#include<iostream>
+using namespace std;
+
+class Punto2D{
+ private:
+     int x;
+     int y;
+ public:
+    void UbicarPunto(int px, int py);
+    void Mostrar();
+
+ };
+ void Punto2D::UbicarPunto(int px,int py){
+   x=px;
+   y=py;
+
+ }
+ void Punto2D::Mostrar(){
+ cout<<"("<<x<<")"<<"("<<y<<")"<<endl;
+ }
+ int main(){
+ Punto2D p1;
+ p1.UbicarPunto(3,4);
+ p1.Mostrar();
+
+ return 1;
+ }
+ 
+ 
+ 
+//pag 32
+#include<iostream>
+using namespace std;
+
+class Rectangulo{
+ private:
+    int base;
+    int altura;
+ public:
+    int Area();
+    int Perimetro();
+    int mostrar();
+
+};
+int Rectangulo::Area()
+{
+    return base*altura;
+};
+int Rectangulo::Perimetro()
+{
+    return 2*base+2*altura;
+};
+int Rectangulo::mostrar(){
+    cout<<"base ="<<base<<endl;
+    cout<<"altura ="<<altura<<endl;
+    cout<<"area ="<<Area()<<endl;
+    cout<<"perimetro ="<<Perimetro()<<endl;
+};
+int main(){
+
+ Rectangulo p1;
+ p1.mostrar();
+
+
+ return 1;
+ }
+ 
+ 
+ 
+//pag 35
+ #include<iostream>
+using namespace std;
+
+class Rectangulo{
+ private:
+    int base;
+    int altura;
+ public:
+    int Area();
+    int Perimetro();
+    int mostrar();
+    void AsignarDatos(int b,int h);
+};
+int Rectangulo::Area()
+{
+    return base*altura;
+};
+int Rectangulo::Perimetro()
+{
+    return 2*base+2*altura;
+};
+int Rectangulo::mostrar(){
+    cout<<"base ="<<base<<endl;
+    cout<<"altura ="<<altura<<endl;
+    cout<<"area ="<<Area()<<endl;
+    cout<<"perimetro ="<<Perimetro()<<endl;
+};
+void Rectangulo::AsignarDatos(int b,int h)
+{
+    base=b;
+    altura=h;
+};
+int main(){
+
+ Rectangulo p1;
+ p1.AsignarDatos(10,5);;
+ p1.mostrar();
+
+
+ return 1;
+ }
+ 
+ 
+ 
+//pag 36-37 triangulo
+ #include<iostream>
+#include<cmath>
+using namespace std;
+
+class Triangulo{
+private:
+    int a;
+    int b;
+    int c;
+public:
+    void Asignarlados(int la,int lb,int lc);
+    float Area();
+    float Perimetro();
+    void mostrar();
+};
+void Triangulo::Asignarlados(int la,int lb,int lc)
+{
+    a=la;
+    b=lb;
+    c=lc;
+}
+float Triangulo::Area()
+{
+    float sp=Perimetro()/2;
+    return sqrt(sp*(sp-a)*(sp-b)*(sp-c));
+}
+float Triangulo::Perimetro()
+{
+    return a+b+c;
+}
+void Triangulo::mostrar()
+{
+    cout<<"area ="<<Area()<<"u2"<<endl;
+    cout<<"perimetro ="<<Perimetro()<<"u"<<endl;
+}
+int main(){
+    Triangulo p1;
+    p1.Asignarlados(3,4,5);
+    p1.mostrar();
+
+
+ return 1;
+ }
+ 
+ 
+ 
+ //pag 37-38 cirulo
+ #include<iostream>
+#include<cmath>
+using namespace std;
+
+class Circulo{
+ private:
+    int r;
+ public:
+    void AsignarRadio(int _r);
+    float Area();
+    float Perimetro();
+    void mostrar();
+};
+void Circulo::AsignarRadio(int _r)
+{
+    r=_r;
+}
+float Circulo::Area()
+{
+    return 3.14*r*r;
+}
+float Circulo::Perimetro()
+{
+    return 2*3.14*r;
+}
+void Circulo::mostrar()
+{
+    cout<<"radio ="<<r<<endl;
+    cout<<"area ="<<Area()<<endl;
+    cout<<"perimetro ="<<Perimetro()<<endl;
+}
+int main(){
+  Circulo p1;
+  p1.AsignarRadio(3);
+  p1.mostrar();
+
+ return 1;
+ }
+ 
+ 
+ 
+//pag 39 clases anidadas
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+class Externa{
+private:
+    int dato1;
+    class Interna{
+        private:
+            int dato2;
+        public:
+            void DarDato2(int dato);
+            void Mostrar();
+    };
+    Interna in;
+public:
+    void Dardatos(int d1,int d2);
+    void Mostrar();
+};
+void Externa::Interna::DarDato2(int dato){
+    dato2=dato;
+}
+void Externa::Interna::Mostrar(){
+    cout<<"accediendo a la clase interna"<<endl;
+    cout<<"dato2="<<dato2<<endl;
+}
+void Externa::Dardatos(int d1,int d2){
+    in.DarDato2(d2);
+    d1=dato1;
+}
+void Externa::Mostrar(){
+    in.Mostrar();
+    cout<<"clase externa"<<endl;
+    cout<<"dato1="<<dato1<<endl;
+
+}
+int main(){
+  Externa ex;
+  ex.Dardatos(10,11);
+  ex.Mostrar();
+
+ return 1;
+ }
+ 
+ 
+ 
+//pag 41-41 clases anidados
+
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+class Punto3D{
+private:
+    int z;
+    class Punto2D{
+        private:
+            int x;
+            int y;
+        public:
+            void DarCoordenada(int px,int py)
+            {
+                x=px;
+                y=py;
+            };
+            void mostrar(){
+                cout<<x<<","<<y<<endl;
+            }
+
+    };
+     Punto2D p;
+public:
+    void DarCoordenada(int px,int py,int pz){
+        p.DarCoordenada(px,py);
+        z=pz;
+    }
+    void mostrar(){
+        cout<<"p(";
+        p.mostrar();
+        cout<<","<<z<<")";
+    }
+
+};
+int main(){
+    Punto3D p3d;
+    p3d.DarCoordenada(1,2,3);
+    p3d.mostrar();
+ return 1;
+ }
+ 
+ 
+ 
+//clase punto pagina 42
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+class Punto{
+private:
+    int x;
+    int y;
+public:
+    void AsignarPunto(int x,int y);
+    float Distancia();
+    void mostrar();
+};
+void Punto::AsignarPunto(int x,int y){
+this->x=x;
+this->y=y;
+}
+float Punto::Distancia(){
+return sqrt(x*x+y*y);
+}
+void Punto::mostrar(){
+cout<<"("<<x<<","<<y<<")"<<endl;
+cout<<"distancia del origen al punto ";
+cout<<Distancia()<<endl<<endl;
+}
+int main(){
+Punto p1,p2,p3,p4,p5;
+p1.AsignarPunto(2,2);
+p2.AsignarPunto(7,6);
+p3.AsignarPunto(-7,6);
+p4.AsignarPunto(-8,2);
+p5.AsignarPunto(-5,-4);
+
+p1.mostrar();
+p2.mostrar();
+p3.mostrar();
+p4.mostrar();
+p5.mostrar();
+ return 1;
+ }
+ 
+ 
+ 
+//pag 46 47
+#include<iostream>
+#include<cmath>
+using namespace std;
+class Ejemplo{
+private:
+    int dato_privado;
+    void funcion_privada(){
+    cout<<"PRIVATE";
+    }
+protected:
+    int dato_protegido;
+    void funcion_protegida(){
+    cout<<"PROTECTED";
+    }
+public:
+    int dato_publico;
+    void funcion_publica(){
+    cout<<"PUBLIC";
+    }
+
+};
+int main(){
+Ejemplo ejem;
+int prueba;
+//ejem.dato_privado=5;
+//ejem.funcion_privada();
+//ejem.dato_protegido=9;
+//ejem.funcion_protegida();
+ejem.dato_publico=10;
+ejem.funcion_publica();
+ return 1;
+ }
+
+
+
+
+
+
+
+
