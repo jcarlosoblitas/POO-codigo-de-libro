@@ -1,0 +1,86 @@
+#include <iostream>
+using namespace std;
+
+class Rectangulo
+{
+private:
+    int b, h, x, y;
+
+public:
+    void asignarBase(int base) {
+        b = base;
+    }
+
+    void asignarAltura(int altura) {
+        h = altura;
+    }
+
+    int calculararea() {
+       return b * h;
+    }
+
+    int calcularperimetro() {
+        return b * 2 + h * 2;
+    }
+
+    void asignarxy(int px, int py) {
+        x = px;
+        y = py;
+    }
+
+    void mostrarCoordenadas() {
+        cout << "1 " << x << ";" << y << endl;
+        cout << "2 " << x << ";" << y - h << endl;
+        cout << "3 " << x + b << ";" << y << endl;
+        cout << "4 " << x + b << ";" << y - h << endl;
+    }
+
+    void cuadrante() {
+        if (x > 0 && y > 0) {
+            cout << "1: I" << endl;
+        }
+
+        else if (x < 0 && y < 0) {
+            cout << "2: III" << endl;
+        }
+
+        else if (x < 0 && y >0) {
+            cout << "3: II" << endl;
+        }
+
+        else if (x > 0 && y<0) {
+            cout << "4: IV" << endl;
+        }
+    }
+    void origencentro(){
+if(x<=0 && x+b>=0 && y - h>=0 && y>=0){
+   cout<<"el centro esta dentro de la figura"<<endl;
+
+}
+else{
+    cout<<"el centro no esta dentro de la figura"<<endl;
+}
+};
+
+};
+
+int main()
+{
+    Rectangulo r1;
+    r1.asignarBase(10);
+    r1.asignarAltura(5);
+    r1.asignarxy(-7, 16);
+    r1.mostrarCoordenadas();
+    r1.cuadrante();
+    r1.origencentro();
+
+    Rectangulo r2;
+    r1.asignarBase(4);
+    r1.asignarAltura(2);
+    r1.asignarxy(14, -2);
+    r1.mostrarCoordenadas();
+    r1.cuadrante();
+    r1.origencentro();
+    
+    return 0;
+}
