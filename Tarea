@@ -1,0 +1,52 @@
+circulo #include <iostream>
+#include<cmath>
+using namespace std;
+
+class Circulo{
+private:
+ int x1,y1,x2,y2,r;
+
+public:
+    Circulo();
+  void saberadio(int);
+  void coordenadas1(int, int);
+  void coordenadas2(int,int);
+  void ubipunto();
+
+};
+Circulo::Circulo(){
+};
+void Circulo::saberadio(int _r ){
+r=_r;
+
+};
+void Circulo::coordenadas1(int _x1, int _y1){
+x1=_x1;
+y1=_y1;
+};
+void Circulo::coordenadas2(int _x2, int _y2){
+x2=_x2;
+y2=_y2;
+};
+void Circulo::ubipunto()
+{
+    int d;
+ d=sqrt(((x2-x1)*(x2-x1))+((y2-y1)*(y2-y1)));
+ if(d<=r)
+ {
+    cout<<"el punto esta dentro del circulo"<<endl;
+ }else{
+  cout<<"el punto no esta dentro del circulo"<<endl;
+
+ };
+};
+
+int main(){
+
+    Circulo p1;
+    p1.saberadio(4);
+    p1.coordenadas1(5,6);
+    p1.coordenadas2(2,2);
+    p1.ubipunto();
+    return 0;
+}
