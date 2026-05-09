@@ -1,0 +1,302 @@
+//pag 48
+#include<iostream>
+#include<cmath>
+using namespace std;
+class A{
+public:
+    A(){
+    cout<<"se ha creado un objeto";
+    }
+};
+int main(){
+    A objA;
+
+
+ return 1;
+ }
+
+
+//pag 49
+#include<iostream>
+#include<cmath>
+using namespace std;
+class Punto{
+private:
+    int x;
+    int y;
+public:
+    Punto(int x, int y);
+    void AsignarPunto(int x,int y);
+    void Mostrar();
+};
+Punto::Punto(int x,int y){
+this ->x=x;
+this ->y=y;
+}
+void Punto::AsignarPunto(int x,int y){
+this ->x=x;
+this ->y=y;
+}
+void Punto::Mostrar(){
+cout<<x<<","<<y<<endl;
+}
+int main(){
+    Punto o1(3,6);
+    o1.Mostrar();
+
+
+ return 1;
+ }
+
+
+//pag 51-52
+#include<iostream>
+#include<cmath>
+using namespace std;
+class Circulo{
+private:
+    int radio;
+public:
+    Circulo();
+    Circulo(int r);
+    Circulo(const Circulo&obj);
+    void AsignarRadio(int r);
+    float Area();
+    float Perimetro();
+    void mostrar();
+};
+Circulo::Circulo(){
+cout<<"constructor sin parametrizado"<<endl;
+radio=0;
+}
+Circulo::Circulo(int r){
+cout<<"constructor parametrizado"<<endl;
+radio=r;
+}
+Circulo::Circulo(const Circulo&obj){
+cout<<"constructor copia"<<endl;
+*this=obj;
+}
+void Circulo::AsignarRadio(int r){
+radio=r;
+}
+float Circulo::Area(){
+return M_PI*radio*radio;
+}
+float Circulo::Perimetro(){
+return 2*M_PI*radio;
+}
+void Circulo::mostrar(){
+cout<<"radio="<<radio<<endl<<endl;
+}
+int main(){
+ Circulo objSinParam;
+ objSinParam.mostrar();
+ Circulo objConParam(12);
+ objConParam.mostrar();
+ Circulo objCopia(objConParam);
+ objCopia.mostrar()
+; return 1;
+ }
+
+//pag 52-53
+#include<iostream>
+#include<cmath>
+using namespace std;
+class Fecha{
+private:
+    int dia;
+    int mes;
+    int anio;
+public:
+    Fecha();
+    Fecha(int dd,int mm,int aa);
+    Fecha(const Fecha&fecha);
+    void AsignarDia();
+    void AsignarMes();
+    void AsignarAnio();
+    void mostrar();
+};
+Fecha::Fecha(){
+dia=0;
+mes=0;
+anio=0;
+}
+Fecha::Fecha(int dd,int mm,int aa){
+dia=dd;
+mes=mm;
+anio=aa;
+}
+Fecha::Fecha(const Fecha&fecha){
+*this=fecha;
+}
+void Fecha::mostrar(){
+cout<<dia<<" de ";
+switch(mes){
+    case 1:cout<<"enero";break;
+    case 2:cout<<"febrero";break;
+    case 3:cout<<"marzo";break;
+    case 4:cout<<"abril";break;
+    case 5:cout<<"mayo";break;
+    case 6:cout<<"junio";break;
+    case 7:cout<<"julio";break;
+    case 8:cout<<"agosto";break;
+    case 9:cout<<"setiembre";break;
+    case 10:cout<<"octubre";break;
+    case 11:cout<<"noviembre";break;
+    case 12:cout<<"diciembre";break;
+    default:cout<<"error";break;
+}
+cout<<" del "<<anio<<endl;
+}
+int main(){
+Fecha f(3,8,11);
+f.mostrar();
+return 1;
+ }
+
+
+//pag 54-55
+#include<iostream>
+#include<cmath>
+using namespace std;
+class TrianguloRectangulo{
+private:
+    int cat1;
+    int cat2;
+public:
+    TrianguloRectangulo();
+    TrianguloRectangulo(int a,int b);
+    float Hipotenusa();
+    float Area();
+    float Perimetro();
+    void mostrar();
+};
+TrianguloRectangulo::TrianguloRectangulo(){
+cat1=0;
+cat2=0;
+}
+TrianguloRectangulo::TrianguloRectangulo(int a,int b){
+cat1=a;
+cat2=b;
+}
+float TrianguloRectangulo::Hipotenusa(){
+return sqrt((cat1*cat1)+(cat2*cat2));
+}
+float TrianguloRectangulo::Area(){
+return cat1*cat2;
+}
+float TrianguloRectangulo::Perimetro(){
+return cat1+cat2+Hipotenusa();
+}
+void TrianguloRectangulo::mostrar(){
+cout<<"lados..."<<endl;
+cout<<"cat1 "<<cat1<<endl;
+cout<<"cat2 "<<cat2<<endl;
+cout<<"hipetenusa "<<Hipotenusa()<<endl;
+cout<<"area "<<Area()<<endl;
+cout<<"perimetro "<<Perimetro()<<endl;
+}
+int main(){
+ TrianguloRectangulo t(2,3);
+ t.mostrar();
+return 1;
+ }
+
+
+//pag 56-57-58
+#include<iostream>
+#include<cmath>
+using namespace std;
+class Punto2D{
+private:
+    float x;
+    float y;
+public:
+    Punto2D();
+    Punto2D( float px,float py);
+    Punto2D(const Punto2D&p2d);
+    void SetPunto(float px,float py);
+    void SetPunto(const Punto2D&p2d);
+    void SetX(float px);
+    void SetY(float py);
+    float GetX();
+    float GetY();
+    float GetDistancia();
+    float GetAreaTriangulo();
+    int GetCuadrante();
+    float GetAnguloX();
+    float GetAnguloY();
+    void mostrar();
+};
+Punto2D::Punto2D(){
+x=0;
+y=0;
+}
+Punto2D::Punto2D(float px,float py){
+x=px;
+y=py;
+}
+Punto2D::Punto2D(const Punto2D&p2d){
+*this=p2d;
+}
+void Punto2D::SetPunto(float px,float py){
+x=px;
+y=py;
+}
+void Punto2D::SetPunto(const Punto2D&p2d){
+*this=p2d;
+}
+void Punto2D::SetX(float px){
+x=px;
+}
+void Punto2D::SetY(float py){
+y=py;
+}
+float Punto2D::GetX(){
+return x;
+}
+float Punto2D::GetY(){
+return y;
+}
+float Punto2D::GetDistancia(){
+return sqrt(x*x+y*y);
+}
+float Punto2D::GetAreaTriangulo(){
+return x*y;
+}
+int Punto2D::GetCuadrante(){
+if(x>=0 && y>=0)
+{
+    return 1;
+}
+if(x<=0&&y>=0)
+{
+    return 2;
+}
+if(x<=0&&y<=0)
+{
+    return 3;
+}
+if(x<=0&&y<=0)
+{
+    return 4;
+}
+}
+float Punto2D::GetAnguloX(){
+return atan(y/x)*180/M_PI;
+}
+float Punto2D::GetAnguloY(){
+return 90-GetAnguloX();
+}
+void Punto2D::mostrar(){
+cout<<"("<<x<<","<<y<<")"<<endl;
+}
+
+int main(){
+ Punto2D p(3,4);
+ cout<<p.GetAnguloX()<<endl;
+ cout<<p.GetAnguloY()<<endl;
+ p.mostrar();
+return 1;
+ }
