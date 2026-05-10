@@ -300,3 +300,476 @@ int main(){
  p.mostrar();
 return 1;
  }
+
+
+//pag 58-59-60
+#include<iostream>
+#include<cmath>
+using namespace std;
+class Rectangulo{
+private:
+    int base;
+    int altura;
+public:
+    Rectangulo();
+    Rectangulo(int b,int h);
+    void SetBase(int b);
+    void SetAltura(int h);
+    long GetArea();
+    int GetPerimetro();
+    int GetBase();
+    int GetAltura();
+    void mostrar();
+};
+Rectangulo::Rectangulo(){
+altura=0;
+base=0;
+}
+Rectangulo::Rectangulo(int b,int h){
+base=b;
+altura=h;
+cout<<"se ha construido el objeto con siguientes dimensiones"<<endl;
+cout<<"base: "<<base<<endl;
+cout<<"altura: "<<altura<<endl;
+}
+long Rectangulo::GetArea(){
+return base*altura;
+}
+int Rectangulo::GetPerimetro(){
+return 2*(base+altura);
+}
+int Rectangulo::GetBase(){
+return base;
+}
+int Rectangulo::GetAltura(){
+return altura;
+}
+void Rectangulo::SetBase(int b){
+base=b;
+}
+void Rectangulo::SetAltura(int h){
+altura=h;
+}
+
+int main(){
+
+long area;
+Rectangulo rect=Rectangulo(5,6);
+area=rect.GetArea();
+cout<<"el area es: "<<area;
+
+return 1;
+ }
+
+
+
+//pag 61-62
+#include<iostream>
+#include<cmath>
+using namespace std;
+class Hora{
+private:
+    int hora;
+    int minu;
+    int seg;
+public:
+    Hora(){
+    hora=0,
+    minu=0;
+    seg=0;
+    }
+    Hora(int h,int m,int s){
+    hora=h;
+    minu=m;
+    seg=s;
+    }
+
+    void SetHora(int h,int m,int s){
+    hora=h;
+    minu=m;
+    seg=s;
+    }
+    int GetHora(){
+    return hora;
+    }
+    int GetMin(){
+    return minu;
+    }
+    int GetSeg(){
+    return seg;
+    }
+    void mostrar(){
+    cout<<hora<<":"<<minu<<":"<<seg<<endl;
+    }
+    ~Hora(){
+    cout<<"el detructor a sido llamado automaticamente"<<endl;
+    cout<<"el objeto a sido eliminado de memoria"<<endl;
+    hora=0,
+    minu=0;
+    seg=0;
+    }
+};
+
+int main(){
+
+Hora*objHora;
+objHora->mostrar();
+delete objHora;
+Hora obj(15,23,55);
+obj.mostrar();
+return 1;
+ }
+
+
+//pag 63-64-65
+#include<iostream>
+#include<cmath>
+using namespace std;
+class Punto{
+private:
+    float x;
+    float y;
+public:
+    Punto();
+    Punto(float x,float y);
+    Punto(const Punto&punto);
+    float GetX();
+    float GetY();
+    Punto GetPunto();
+    Punto GetProductoPorUnEscolar(float k);
+    float GetProductoEscolar(Punto p);
+    Punto GetSuma(Punto p);
+    Punto GetResta(Punto p);
+    void mostrar();
+};
+Punto::Punto(){
+x=0;
+y=0;
+}
+Punto::Punto(float x,float y){
+this->x=x;
+this->y=y;
+}
+Punto::Punto(const Punto&punto){
+*this=punto;
+}
+float Punto::GetX(){
+return x;
+}
+float Punto::GetY(){
+return y;
+}
+Punto Punto::GetPunto(){
+return *this;
+}
+Punto Punto::GetProductoPorUnEscolar(float k){
+Punto r;
+r.x=k*x;
+r.y=k*y;
+return r;
+}
+float Punto::GetProductoEscolar(Punto p){
+float r;
+r=x*p.x+y*p.y;
+return r;
+}
+Punto Punto::GetSuma(Punto p){
+return Punto(x+p.x,y+p.y);
+}
+Punto Punto::GetResta(Punto p){
+return Punto(x-p.x,y-p.y);
+}
+void Punto::mostrar(){
+cout<<"("<<x<<","<<y<<")"<<endl;
+}
+int main(){
+Punto a(2,1);
+Punto b(3,6);
+Punto c;
+float r;
+a.mostrar();
+b.mostrar();
+r=a.GetProductoEscolar(b);
+cout<<r<<endl;
+c=a.GetResta(b);
+c.mostrar();
+
+return 1;
+ }
+
+
+//pag 65-66-67
+#include<iostream>
+#include<cmath>
+using namespace std;
+class Hora{
+private:
+    int hora;
+    int minu;
+    int seg;
+public:
+    Hora();
+    Hora(int h,int m,int s);
+    void SetHora(int h,int m,int s);
+    int GetHora();
+    int GetMin();
+    int GetSeg();
+    Hora GetSuma(Hora h);
+    Hora GetSumaSegundos(int s);
+    void mostrar();
+    ~Hora();
+};
+Hora::Hora(){
+hora=0;
+minu=0;
+seg=0;
+}
+Hora::Hora(int h,int m,int s){
+hora=h;
+minu=m;
+seg=s;
+}
+void Hora::SetHora(int h,int m,int s){
+hora=h;
+minu=m;
+seg=s;
+}
+int Hora::GetHora(){
+return hora;
+}
+int Hora::GetMin(){
+return minu;
+}
+int Hora::GetSeg(){
+return seg;
+}
+Hora Hora::GetSuma(Hora h){
+Hora r;
+int tmp=0;
+r.seg=seg+h.seg;
+if(r.seg>=60){
+    tmp=r.seg/60;
+    r.seg=r.seg%60;
+}
+r.minu=minu+h.minu+tmp;
+tmp=0;
+if(r.minu>=60){
+    tmp=r.minu/60;
+    r.minu=r.minu%60;
+}
+r.hora=hora+h.hora+tmp;
+return r;
+}
+Hora Hora::GetSumaSegundos(int s){
+Hora r;
+int tmp=0;
+r.seg=seg+s;
+if(r.seg>=60){
+    tmp=r.seg/60;
+    r.seg=r.seg%60;
+}
+r.minu=minu+tmp;
+tmp=0;
+if(r.minu>=60){
+    tmp=r.minu/60;
+    r.minu=r.minu%60;
+}
+r.hora=hora+tmp;
+return r;
+}
+void Hora::mostrar(){
+cout<<hora<<":"<<minu<<":"<<seg<<endl;
+}
+Hora::~Hora(){
+hora=0;
+minu=0;
+seg=0;
+}
+int main(){
+
+
+return 1;
+ }
+
+
+//pag 68-69-70
+#include<iostream>
+#include<cmath>
+using namespace std;
+class TrapecioRectangular{
+private:
+    float B;
+    float b;
+    float h;
+    float Validar(float num);
+public:
+    TrapecioRectangular();
+    TrapecioRectangular(float B,float b,float h);
+    void SetBases(float B,float b);
+    void SetAltura(float h);
+    float GetBaseMayor();
+    float GetBaseMenor();
+    float GetAltura();
+    TrapecioRectangular GetTrapecio();
+    float GetArea();
+    float GetCuartoLado();
+    float GetPerimetro();
+    float GetDiagonalMayor();
+    float GetDiagonalMenor();
+    void mostrar();
+};
+TrapecioRectangular::TrapecioRectangular(){
+B=b=h=0;
+}
+TrapecioRectangular::TrapecioRectangular(float B,float b,float h){
+SetBases(B,b);
+SetAltura(h);
+}
+void TrapecioRectangular::SetBases(float B,float b){
+this->B=Validar(B);
+this->b=Validar(b);
+if(b>B){
+    this->B=Validar(b);
+    this->b=Validar(B);
+}
+}
+void TrapecioRectangular::SetAltura(float h){
+this->h=Validar(h);
+}
+float TrapecioRectangular::Validar(float num){
+if(num>0){
+    return num;
+}
+if(num==0){
+    cout<<"error: valor debe ser direfente de 0"<<endl;
+    return -num;
+}
+}
+float TrapecioRectangular::GetBaseMayor(){
+return B;
+}
+float TrapecioRectangular::GetBaseMenor(){
+return b;
+}
+float TrapecioRectangular::GetAltura(){
+return h;
+}
+TrapecioRectangular TrapecioRectangular::GetTrapecio(){
+return *this;
+}
+float TrapecioRectangular::GetArea(){
+return h*b+h*(B-b);
+}
+float TrapecioRectangular::GetCuartoLado(){
+return sqrt(h*h+(B-b)*(B-b));
+}
+float TrapecioRectangular::GetPerimetro(){
+return B+b+h+GetCuartoLado();
+}
+float TrapecioRectangular::GetDiagonalMayor(){
+return sqrt(h*h+B*B);
+}
+float TrapecioRectangular::GetDiagonalMenor(){
+return sqrt(h*h+b*b);
+}
+void TrapecioRectangular::mostrar(){
+cout<<"TRAPECIO RECTANGULAR"<<endl;
+cout<<"base mayor"<<B<<endl;
+cout<<"base menor"<<b<<endl;
+cout<<"base altura"<<h<<endl;
+cout<<"base cuarto lado"<<GetCuartoLado()<<endl;
+cout<<"area "<<GetArea()<<endl;
+cout<<"perimetro "<<GetPerimetro()<<endl;
+cout<<"diagonal.mayor"<<GetDiagonalMayor()<<endl;
+cout<<"diagonal.menor"<<GetDiagonalMenor()<<endl;
+}
+int main(){
+TrapecioRectangular tr1(1,2,1);
+TrapecioRectangular tr2;
+tr1.mostrar();
+tr2=tr1.GetTrapecio();
+//copia el otro objeto exactamente
+tr2.mostrar();
+tr2.SetAltura(2);
+tr1.mostrar();
+tr2.mostrar();
+return 1;
+ }
+
+
+//pag 70-71-72
+#include<iostream>
+#include<cmath>
+using namespace std;
+class TrianguloRectangulo{
+private:
+    float CatMayor;
+    float CatMenor;
+    float Validar(float num);
+public:
+    TrianguloRectangulo();
+    TrianguloRectangulo(float cat1,float cat2);
+    void SetCatetos(float cat1,float cat2);
+    float GetCatetoMayor();
+    float GetcatetoMenor();
+    TrianguloRectangulo GetTriangulo();
+    float GetArea();
+    float GetHipotenusa();
+    float GetPerimetro();
+    void mostrar();
+};
+TrianguloRectangulo::TrianguloRectangulo(){
+CatMayor=0;
+CatMenor=0;
+}
+TrianguloRectangulo::TrianguloRectangulo(float cat1,float cat2){
+SetCatetos(cat1,cat2);
+}
+void TrianguloRectangulo::SetCatetos(float cat1,float cat2){
+CatMayor=Validar(cat1);
+CatMenor=Validar(cat2);
+if(CatMenor>CatMayor){
+    this->CatMayor=Validar(cat2);
+    this->CatMenor=Validar(cat1);
+}
+}
+float TrianguloRectangulo::Validar(float num){
+if(num>0){
+    return num;
+}
+if(num==0){
+    cout<<"error: valor debe ser diferente de 0"<<endl;
+    return -num;
+}
+}
+float TrianguloRectangulo::GetCatetoMayor(){
+return CatMayor;
+}
+float TrianguloRectangulo::GetcatetoMenor(){
+return CatMenor;
+}
+TrianguloRectangulo TrianguloRectangulo::GetTriangulo(){
+return *this;
+}
+float TrianguloRectangulo::GetArea(){
+return CatMayor*CatMenor/2;
+}
+float TrianguloRectangulo::GetHipotenusa(){
+return sqrt(CatMayor*CatMayor+CatMenor*CatMenor);
+}
+float TrianguloRectangulo::GetPerimetro(){
+return CatMayor+CatMenor+GetHipotenusa();
+}
+void TrianguloRectangulo::mostrar(){
+cout<<"TRIANGULO RECTANGULO."<<endl;
+cout<<"cateto mayor"<<CatMayor<<endl;
+cout<<"cateto menor"<<CatMayor<<endl;
+cout<<"hipotenusa "<<GetHipotenusa()<<endl;
+cout<<"area "<<GetArea()<<endl;
+cout<<"perimetro"<<GetPerimetro()<<endl;
+}
+int main(){
+TrianguloRectangulo tr1(1,1);
+tr1.mostrar();
+return 1;
+ }
